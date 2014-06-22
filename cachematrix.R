@@ -36,3 +36,17 @@ cacheSolve <- function(x, ...) {
         x$setinverse(cachedInverse)
         cachedInverse
 }
+
+# # explanatory usage
+# rawMat = matrix(c(1,2,2,1), nrow=2, ncol=2)
+# mat = makeCacheMatrix(rawMat)
+# identical(rawMat, mat$get()) # TRUE
+# is.null(mat$getinverse()) # TRUE - not calculated yet
+# cacheSolve(mat) # 2
+# all.equal(cacheSolve(mat), matrix(c(-0.3333333, 0.6666667, 0.6666667, -0.3333333), nrow=2, ncol=2), tolerance=.0000001) # TRUE
+# newRawMat = matrix(c(2,3,3,2), nrow=2, ncol=2)
+# mat$set(newRawMat)
+# identical(newRawMat, mat$get()) # TRUE
+# is.null(mat$getinverse()) # TRUE - cached inverse invalidated
+# cacheSolve(mat) # 3
+# is.matrix(mat$getinverse()) # TRUE
